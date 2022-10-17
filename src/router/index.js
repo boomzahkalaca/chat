@@ -1,6 +1,6 @@
 import VueRouter from "vue-router";
 import Title from "@/components/Title";
-import Friend from "@/components/Friend";
+import Friend from "@/components/friend/Friend";
 import AddCourse from "@/components/addCourse/AddCourse";
 import Field from "@/components/addCourse/Field";
 import ShowCourse from "@/components/addCourse/ShowCourse";
@@ -8,12 +8,12 @@ import Login from "@/components/Login";
 import Home from "@/components/Home";
 import Profile from "@/components/Profile/Profile";
 import Contact from "@/components/chat/Contact";
-import test from "@/components/test";
+import test from "@/components/Alert/src/Alert";
 import Chanel from "@/components/chanel/Chanel";
-import FriendApplication from "@/components/FriendApplication";
+import FriendApplication from "@/components/friend/FriendApplication";
 import Share from "@/components/chanel/Share";
 import AddPost from "@/components/chanel/AddPost";
-import OtherProfile from "@/components/OtherProfile";
+import OtherProfile from "@/components/Profile/OtherProfile";
 import Register from "@/components/Register";
 export default new VueRouter({
     routes:[

@@ -3,8 +3,8 @@
     <ul id="page">
       <li class="one" v-for="(course,index) in courseList" :key="index">
         <span>{{course.name}}&nbsp;{{course.courseId}}</span>
-        <el-button @click="addCourse(course.courseId)" id="button" v-show="!course.isAdd" >Add</el-button>
-        <el-button v-show="course.isAdd" disabled>Added</el-button>
+        <button id="addBtn" @click="addCourse(course)"  v-show="!course.isAdd" >Add</button>
+        <button  id="addedBtn" v-show="course.isAdd" disabled>Added</button>
       </li>
 <!--      <li class="one" v-for="i in 10" :key="i+5">-->
 <!--        <span>DECO 7381</span>-->
@@ -21,15 +21,24 @@
     data(){
       return{
         courseList:[],
-        user:null
+        user:{}
       }
     },
     methods:{
-      async addCourse(courseId){
+      async addCourse(course){
   
-        await axios.post("http://localhost:8080/course/add",{studentId:this.user.studentId,courseId:courseId}).then(res=>{
-          console.log(res)
+        await axios.post("http://localhost:8080/course/add",{studentId:this.user.studentId,courseId:course.courseId}).then(res=>{
+          console.log("3 yes")
           this.$set(course,"isAdd",true)
+          console.log("4 yes")
+          this.$alert({
+            message: 'Course added successfully',
+            confirmText: 'Confirm'
+          }).then(action => {
+            console.log(`点击了${action}`)
+          }).catch(action => {
+            console.log(`点击了${action}`)
+          })
         })
       },
       async getMyCourse(){
@@ -44,10 +53,12 @@
       this.courseList=JSON.parse(this.$route.params.courseList)
       for(let i=0;i<this.courseList.length;i++){
         this.$set(this.courseList[i],'isAdd',false)
+        console.log("yes")
       }
       for(let u=0;u<this.courseList.length;u++){
         if(this.myCourseList.indexOf(this.courseList[u].courseId)!=-1){
           this.$set(this.courseList[u],"isAdd",true)
+          console.log("2 yes")
         }
       }
     }
@@ -70,7 +81,8 @@
     padding-bottom: 10vh;
     box-shadow: rgba(0, 0, 0, 0.3) 0 5px 15px;
   }
-  .one{
+
+  .one {
     height: 4.8rem;
     background-color: #FFFAF5;
     border-radius: 20px;
@@ -83,12 +95,19 @@
     font-size: 1.1rem;
   }
   button {
-    color: white;
-    background-color: #6C5FBC;
     padding: 5px 10px;
     font-size: 1.1rem;
     border-radius: 20px;
     border: 1px solid #6C5FBC;
     width: 5.5rem;
+  }
+  #addBtn{
+    color: white;
+    background-color: #6C5FBC;
+  }
+  #addedBtn {
+    color: #6C5FBC;
+    background-color: white;
+    transition: all 0.25s ease-in-out;
   }
   </style>

@@ -17,8 +17,8 @@
                 <p>From {{ friend.country }}</p>
               </div>
             </div>
-            <el-button v-show="!friend.isAdd" class="addFriendBtn" @click="addFriend(friend, hobby)"><i class="el-icon-plus"></i></el-button>
-            <el-button v-show="friend.isAdd" class="addFriendBtn" disabled><i class="el-icon-plus"></i></el-button>
+            <el-button :disabled="friend.isAdd" class="addFriendBtn" @click="addFriend(friend, hobby)"><i class="el-icon-plus"></i></el-button>
+
           </div>
           <!-- FOR TESTING below -->
           <!-- <div class="friend" v-for="i in 5" :key="i">
@@ -182,6 +182,14 @@ export default {
       this.$set(o,"isAdd",true)
       if (this.socket) {
         this.socket.send(JSON.stringify(socketMessage))
+        this.$alert({
+          message: 'Friend application has been sent',
+          confirmText: 'Confirm'
+        }).then(action => {
+          console.log(`点击了${action}`)
+        }).catch(action => {
+          console.log(`点击了${action}`)
+        })
       }
     },
     goToshare(topic, src) {
@@ -301,8 +309,8 @@ h2 > i {
 }
 
 .addFriendBtn {
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
   border-radius: 30px;
   background-color: #6C5FBC;
   box-shadow: rgb(0, 0, 0, 0.25) 0 0 7px;
@@ -314,6 +322,24 @@ h2 > i {
   font-size: 0.7rem;
   font-weight: bold;
   flex: 0 0 10%;
+  border: 1px black solid;
+}
+.addedBtn{
+  width: 20px;
+  height: 20px;
+  border-radius: 30px;
+  background-color: #6C5FBC;
+  box-shadow: rgb(0, 0, 0, 0.25) 0 0 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  border: none;
+  font-size: 0.7rem;
+  font-weight: bold;
+  flex: 0 0 10%;
+  transition: all 0.25s ease-in-out;
+
 }
 
 #topics {

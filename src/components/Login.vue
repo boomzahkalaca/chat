@@ -38,7 +38,7 @@ export default {
         studentId:'',
         password:''
       },
-      student:null,
+      student: {},
       imgSrc:''
     }
   },

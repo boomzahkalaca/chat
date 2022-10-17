@@ -44,17 +44,29 @@ export default {
       courseList: [],
       studentList: [],
       activeCourse: 0,
-      user: null,
+      user: {},
       curCourse: '',
       socket: {}
     }
   },
   methods: {
     async deleteCourse(){
-      await axios.post("http://localhost:8080/course/delete",{studentId:this.user.studentId,courseId:this.curCourse}).then(res=>{
-        console.log(res)
+      this.$alert({
+        message: 'Do you really want to drop this course',
+        cancelText:"Cancel",
+        confirmText: 'Confirm',
+        showCancel:true
+      }).then(async action => {
+        console.log(`点击了${action}`)
+        await axios.post("http://localhost:8080/course/delete",{studentId:this.user.studentId,courseId:this.curCourse}).then(res=>{
+          console.log(res);
+        })
+        this.reload();
+      }).catch(action => {
+        console.log(`点击了${action}`)
       })
-      this.reload();
+
+
     },
     async getCourse(sId) {
       await axios.get("http://localhost:8080/user/courseList?studentId=" + sId).then(res => {

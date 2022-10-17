@@ -46,7 +46,7 @@ export default {
         name:'',
         country:''
       },
-      student:null,
+      student:{},
       imgSrc:''
     }
   },

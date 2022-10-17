@@ -95,7 +95,7 @@ export default {
       isShowExpression: false,
       expressions,
       baseUrl: EMOJI_BASE_URL,
-      user: null,
+      user: {},
       hobbyList: [],
     }
   },

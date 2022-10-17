@@ -41,7 +41,7 @@ export default {
       loginUser:{},
       token:"",
       audioSrc:BELL_URL,
-      socket:null,
+      socket:{},
       isConnect:false,
     }
   },

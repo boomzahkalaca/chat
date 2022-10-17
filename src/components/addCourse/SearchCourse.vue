@@ -19,7 +19,7 @@ export default {
   data() {
     return {
       courseName: '',
-      course: null,
+      course: {},
     }
   },
   methods: {
